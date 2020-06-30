@@ -5,7 +5,7 @@ class ProspectsAPI:
 
     @classmethod
     def teams(cls):
-        response = requests.get(f'{cls.__url}&feed=modulekitview=teamsbyseason')
+        response = requests.get(f'{cls.__url}&feed=modulekit&view=teamsbyseason')
 
         if response.status_code == 200:
             return response.json()['SiteKit']['Teamsbyseason']
@@ -59,7 +59,7 @@ class ProspectsAPI:
     @classmethod
     def game(cls, game_id):
         return {
-            'game_summary': ProspectsAPI.game_summary(game_id),
+            'summary': ProspectsAPI.game_summary(game_id),
             'pbp': ProspectsAPI.game_play_by_play(game_id)
         }
 
@@ -79,4 +79,4 @@ class ProspectsAPI:
         if response.status_code == 200:
             return response.json()['GC']['Pxpverbose']
 
-        return {}
+        return []
